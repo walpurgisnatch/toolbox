@@ -7,5 +7,6 @@
                 :serial t
                 :components
                 ((:file "utils")
-                (:file "main"))))
+                 (:file "fileworks")
+                 (:file "main"))))
   :description "Collection of terminal tools")
