@@ -1,4 +1,5 @@
+(in-package :cl-user)
 (defpackage toolbox
-  (:use :cl))
+  (:use :cl :toolbox.utils))
 
 (in-package :toolbox)
