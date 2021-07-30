@@ -4,7 +4,8 @@
   :license "MIT"
   :depends-on ()
   :components ((:module "src"
+                :serial t
                 :components
-                ((:file "toolbox"))))
-  :description ""
-  :in-order-to ((test-op (test-op "toolbox/tests"))))
+                ((:file "utils")
+                (:file "main"))))
+  :description "Collection of terminal tools")
