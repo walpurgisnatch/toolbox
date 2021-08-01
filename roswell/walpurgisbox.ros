@@ -1,0 +1,27 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  #+quicklisp(ql:quickload '(:walpurgisbox) :silent t)
+  )
+
+(defpackage :ros.script.walpurgisbox.3836778453
+  (:use :cl :walpurgisbox))
+(in-package :ros.script.walpurgisbox.3836778453)
+
+(defun main (command &rest argv)
+  (declare (ignorable argv))
+  (handler-case
+      (cond
+        ((equal command "truncate-name") (truncate-name argv))
+        ((equal command "rename-regex") (rename-regex argv))
+        ((equal command "subst-in") (subst-in (car argv) (cadr argv) (cddr argv)))
+        ((equal command "countl") (countl argv))
+        ((equal command "countli") (countli argv))
+        (t (format t "~%Command not found~%")))
+    (error (e)
+      (format *standard-output* "~%Error: ~a~%" e)
+      (uiop:quit -1))))
