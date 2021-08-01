@@ -1,9 +1,9 @@
 (in-package :cl-user)
-(defpackage toolbox.utils
+(defpackage walpurgisbox.utils
   (:use :cl)
   (:export :with-optional-dir))
 
-(in-package :toolbox.utils)
+(in-package :walpurgisbox.utils)
 
 (defmacro with-optional-dir (vars args &rest body)
   `(destructuring-bind ,vars

@@ -1,13 +1,13 @@
 (in-package :cl-user)
-(defpackage toolbox
+(defpackage walpurgisbox
   (:nicknames :wpb)
-  (:use :cl :toolbox.utils)
-  (:import-from :toolbox.fileworks
+  (:use :cl :walpurgisbox.utils)
+  (:import-from :walpurgisbox.fileworks
                 :mkdir
                 :ls
                 :run-through
                 :create-with)
-  (:import-from :toolbox.utils
+  (:import-from :walpurgisbox.utils
                 :with-optional-dir)
   (:import-from :cl-ppcre
                 :regex-replace)
@@ -19,7 +19,7 @@
            :countl
            :countli))
 
-(in-package :toolbox)
+(in-package :walpurgisbox)
 
 (defun shell (&rest args)
   ;(format t "~&~{~a~^ ~}~%" args)

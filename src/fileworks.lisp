@@ -1,12 +1,12 @@
 (in-package :cl-user)
-(defpackage toolbox.fileworks
+(defpackage walpurgisbox.fileworks
   (:use :cl)
   (:export :mkdir
    :ls
            :create-with
            :run-through))
 
-(in-package :toolbox.fileworks)
+(in-package :walpurgisbox.fileworks)
 
 
 (defun run-through (dir fn &key dirs (test (constantly t)))
