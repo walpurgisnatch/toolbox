@@ -15,12 +15,14 @@
    :create-with
            :truncate-name
            :rename-regex
-           :subst-in))
+           :subst-in
+           :countl
+           :countli))
 
 (in-package :toolbox)
 
 (defun shell (&rest args)
-  (format t "~&~{~a~^ ~}~%" args)
+  ;(format t "~&~{~a~^ ~}~%" args)
   (uiop:run-program (format nil "~{~a~^ ~}" args) :output t))
 
 (defun truncate-name (&rest args)
@@ -43,5 +45,9 @@
 (defun subst-in (old new &rest files)
   (shell "sed" "-i" (format nil "'s/~a/~a/g' ~{~a~^ ~}" old new files)))
 
+(defun countl (&rest files)
+  (shell "cat" (format nil "~{~a~^ ~}" files) "| wc -l"))
 
+(defun countli (&rest files)
+  (shell "cat" (format nil "~{~a~^ ~}" files) "| sort -u | wc -l"))
 
