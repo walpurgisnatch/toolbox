@@ -48,10 +48,12 @@
              :defaults pathname)
             pathname)))
 
-(defun ls (dir)
-  (when (wild-pathname-p dir)
-    (error "Wildcard not supported"))
-  (directory (directory-wildcard dir)))
+
+(defun ls (&optional directory)
+  (let ((dir (or directory ".")))
+    (when (wild-pathname-p dir)
+      (error "Wildcard not supported"))
+    (directory (directory-wildcard dir))))
 
 (defun mkdir (dir)
   (namestring (ensure-directories-exist
