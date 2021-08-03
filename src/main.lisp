@@ -12,7 +12,7 @@
   (:import-from :cl-ppcre
                 :regex-replace)
   (:export :ls
-   :create-with
+           :create-with
            :truncate-name
            :rename-regex
            :subst-in
@@ -22,7 +22,6 @@
 (in-package :walpurgisbox)
 
 (defun shell (&rest args)
-  ;(format t "~&~{~a~^ ~}~%" args)
   (uiop:run-program (format nil "~{~a~^ ~}" args) :output t))
 
 (defun truncate-name (args)
@@ -45,8 +44,6 @@
 (defun subst-in (old new files)
   (shell "sed" "-i" (format nil "'s/~a/~a/g' ~{~a~^ ~}" old new files)))
 
-(defun countl (files)
-  (shell "cat" (format nil "~{~a~^ ~}" files) "| wc -l"))
 
 (defun countli (files)
   (shell "cat" (format nil "~{~a~^ ~}" files) "| sort -u | wc -l"))
