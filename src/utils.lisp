@@ -9,5 +9,5 @@
   `(destructuring-bind ,vars
        (if (= (length ',vars) (length ,args))
            ,args
-           (push nil ,args))
+           (push "." ,args))
      (progn ,@body)))

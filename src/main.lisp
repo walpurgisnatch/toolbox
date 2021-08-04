@@ -11,17 +11,19 @@
                 :with-optional-dir)
   (:import-from :cl-ppcre
                 :regex-replace)
-  (:export :ls
+  (:export :shell
+           :ls
            :create-with
            :truncate-name
            :rename-regex
            :subst-in
-           :countl
-           :countli))
+           :count-lines
+           :unique-lines))
 
 (in-package :walpurgisbox)
 
 (defun shell (&rest args)
+  ;(format t "~{~a~^ ~}~%" args)
   (uiop:run-program (format nil "~{~a~^ ~}" args) :output t))
 
 (defun truncate-name (args)
@@ -45,6 +47,12 @@
   (shell "sed" "-i" (format nil "'s/~a/~a/g' ~{~a~^ ~}" old new files)))
 
 
-(defun countli (files)
+(defun unique-lines (files)
   (shell "cat" (format nil "~{~a~^ ~}" files) "| sort -u | wc -l"))
 
+(defun count-lines (args)
+  (with-optional-dir (dir type) args
+    (let ((arg (if (equal type "all")
+                   (format nil "-type f")
+                   (format nil "-name ~a" type))))
+      (shell "find" dir arg (format nil "-exec cat {} + | wc -l")))))
