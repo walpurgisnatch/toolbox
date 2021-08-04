@@ -1,5 +1,5 @@
 (defsystem "walpurgisbox"
-  :version "0.1.0"
+  :version "0.5.0"
   :author "Walpurgisnatch"
   :license "MIT"
   :depends-on ("cl-ppcre")
