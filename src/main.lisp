@@ -12,6 +12,7 @@
   (:import-from :cl-ppcre
                 :regex-replace)
   (:export :shell
+           :display
            :ls
            :create-with
            :truncate-name
