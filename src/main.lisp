@@ -18,7 +18,11 @@
            :rename-regex
            :subst-in
            :count-lines
-           :unique-lines))
+           :unique-lines
+           :url-encode
+           :url-double-encode
+           :url-decode
+           :url-double-decode))
 
 (in-package :walpurgisbox)
 
@@ -60,3 +64,18 @@
                    (format nil "-type f")
                    (format nil "-name ~a" type))))
       (shell "find" dir arg (format nil "-exec cat {} + | wc -l")))))
+
+(defun url-encode (url)
+    (quri:url-encode url))
+
+(defun url-double-encode (url)
+    (url-encode (url-encode url)))
+
+(defun url-decode (url)
+    (quri:url-decode url))
+
+(defun url-double-decode (url)
+    (url-decode (url-decode url)))
+
+(defun display (arg)
+    (format t "~&~a~%" arg))
