@@ -23,7 +23,7 @@
 (in-package :walpurgisbox)
 
 (defun shell (&rest args)
-  ;(format t "~{~a~^ ~}~%" args)
+  (format t "~{~a~^ ~}~%" args)
   (uiop:run-program (format nil "~{~a~^ ~}" args) :output t))
 
 (defun truncate-name (args)
@@ -43,8 +43,12 @@
             (shell "mv" name (regex-replace old name new)))))
 
 
-(defun subst-in (old new files)
-  (shell "sed" "-i" (format nil "'s/~a/~a/g' ~{~a~^ ~}" old new files)))
+(defun subst-in (args)
+  (with-optional-dir (dir old new type) args
+    (let ((arg (if (equal type "all")
+                   (format nil "-type f")
+                   (format nil "-name ~a" type))))
+  (shell "find" dir arg "-exec sed" "-i" (format nil "'s/~a/~a/g' {} +" old new)))))
 
 
 (defun unique-lines (files)
