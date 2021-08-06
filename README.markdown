@@ -18,10 +18,10 @@ $ pls truncate-name .exmp
 ```
 
 ### Subst-in
-args: `regex new &rest files`  
-Replace substring in specified files with regex  
+args: `(dir '.') regex new (regex or all)`  
+Replace substring in specified files including ones in subdirectories with regex
 ```
-$ pls subst-in 'old-string' 'new' file1 file2
+$ pls subst-in 'old-string' 'new' *.lisp
 ```
 
 ### Unique-lines
@@ -33,12 +33,31 @@ $ pls unique-lines *
 
 ### Count-lines
 args: `(dir '.') (regex or all)`  
-Count lines in files including subdirectories.
+Count lines in specified files including ones in subdirectories.
 ```
 $ pls count-lines all
 1472481
 $ pls count-lines app *.rb
 37287
+```
+
+### URL-encoding
+Simple encode
+```
+$ pls url-encode '/foo<bar>'
+%2Ffoo%3Cbar%3E
+```
+Double encode
+```
+$ pls url-double-encode '/foo"bar"'
+%252Ffoo%2522bar%2522
+```
+Decoding
+```
+$ pls url-decode '%2Ffoo%3Cbar%3E'
+/foo<bar>
+$ pls url-double-decode '%252Ffoo%2522bar%2522'
+/foo"bar"
 ```
 
 ## Installation
