@@ -28,7 +28,7 @@
 (in-package :walpurgisbox)
 
 (defun shell (&rest args)
-  (format t "~{~a~^ ~}~%" args)
+;  (format t "~{~a~^ ~}~%" args)
   (uiop:run-program (format nil "~{~a~^ ~}" args) :output t))
 
 (defun truncate-name (args)
