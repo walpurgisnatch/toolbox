@@ -53,7 +53,7 @@
     (let ((arg (if (equal type "all")
                    (format nil "-type f")
                    (format nil "-name ~a" type))))
-  (shell "find" dir arg "-exec sed" "-i" (format nil "'s/~a/~a/g' {} +" old new)))))
+  (shell "find" dir arg "-exec sed" "-i -E" (format nil "'s/~a/~a/g' {} +" old new)))))
 
 
 (defun unique-lines (files)
