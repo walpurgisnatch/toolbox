@@ -23,7 +23,8 @@
            :url-encode
            :url-double-encode
            :url-decode
-           :url-double-decode))
+           :url-double-decode
+           :compile-c))
 
 (in-package :walpurgisbox)
 
@@ -80,3 +81,6 @@
 
 (defun display (arg)
     (format t "~&~a~%" arg))
+
+(defun compile-c (name lib)
+  (shell (format nil "gcc -Wall -g ~a.c ~a -o" name lib) name))

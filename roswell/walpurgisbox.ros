@@ -16,6 +16,7 @@ exec ros -Q -- $0 "$@"
   (declare (ignorable argv))
   (handler-case
       (cond
+        ((equal command "compile-c") (compile-c (car argv) (cadr argv)))
         ((equal command "truncate-name") (truncate-name argv))
         ((equal command "rename-regex") (rename-regex argv))
         ((equal command "subst-in") (subst-in argv))
